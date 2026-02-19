@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lo que nunca me atreví a decirte ❤️</title>
+
+<style>
+body{
+    margin:0;
+    padding:0;
+    font-family: 'Segoe UI', sans-serif;
+    background:#0b0b0f;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    text-align:center;
+    color:white;
+    overflow:hidden;
+}
+
+/* Corazones */
+.corazon{
+    position:absolute;
+    color:#ff4d6d;
+    animation: flotar linear infinite;
+    opacity:0.6;
+    z-index:1;
+}
+
+@keyframes flotar{
+    0%{
+        transform: translateY(100vh) scale(0.5);
+        opacity:0;
+    }
+    30%{
+        opacity:0.7;
+    }
+    100%{
+        transform: translateY(-10vh) scale(1.2);
+        opacity:0;
+    }
+}
+
+.pantalla{
+    position:absolute;
+    width:100%;
+    padding:20px;
+    box-sizing:border-box;
+    z-index:2;
+}
+
+button{
+    padding:14px 28px;
+    font-size:18px;
+    border:none;
+    border-radius:30px;
+    background:#ff4d6d;
+    color:white;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+#galeria{
+    display:none;
+}
+
+#galeria img{
+    width:90%;
+    max-width:400px;
+    border-radius:20px;
+    box-shadow:0 0 40px rgba(255,77,109,0.4);
+    opacity:0;
+    transform:scale(1);
+    transition: opacity 1.5s ease, transform 1.5s ease;
+}
+
+#frase{
+    margin-top:20px;
+    font-size:18px;
+    min-height:60px;
+    padding:0 10px;
+    opacity:0;
+    transition: opacity 1.5s ease;
+}
+
+#carta{
+    display:none;
+    max-width:500px;
+    margin:auto;
+}
+
+#textoCarta{
+    font-size:16px;
+    line-height:1.6;
+    text-align:justify;
+    white-space:pre-line;
+}
+</style>
+
+</head>
+<body>
+
+<script>
+for(let i=0;i<20;i++){
+    let corazon = document.createElement("div");
+    corazon.className="corazon";
+    corazon.innerHTML="❤";
+    corazon.style.left=Math.random()*100+"vw";
+    corazon.style.fontSize=(12+Math.random()*20)+"px";
+    corazon.style.animationDuration=(6+Math.random()*6)+"s";
+    document.body.appendChild(corazon);
+}
+</script>
+
+<div id="inicio" class="pantalla">
+    <h2>Este pequeño detalle es para ti 💖</h2>
+    <button onclick="abrirDetalle()">Abrir</button>
+</div>
+
+<div id="galeria" class="pantalla">
+    <img id="foto" src="foto1.jpg">
+    <div id="frase"></div>
+</div>
+
+<div id="carta" class="pantalla">
+    <h2>Lo que nunca me atreví a decirte ❤️</h2>
+    <p id="textoCarta"></p>
+</div>
+
+<audio id="musica" src="cancion.mp3"></audio>
+
+<script>
+let fotos = ["foto1.jpg","foto2.jpg","foto3.jpg","foto4.jpg"];
+
+let frases = [
+    ["Gracias por cada momento compartido 💫",
+     "No imaginé que se volverían tan importantes para mí ✨"],
+
+    ["Cada risa contigo se siente diferente 😊",
+     "Como si el mundo se detuviera un instante 💖"],
+
+    ["Contigo el tiempo pasa demasiado rápido ⏳",
+     "Y aun así siempre quiero un poco más 🌸"],
+
+    ["Sin darme cuenta empezaste a gustarme ❤️",
+     "Y hoy solo quería que lo supieras 💌"]
+];
+
+let indice = 0;
+
+let mensajeFinal = `Se que te parecerá raro que leas esto en esta fecha y es porque no encontraba el momento para decirlo. Tenía miedo de lo que podías pensar o alejarte de mí, porque en el fondo creo que te fallé como amigo al enamorarme de ti, si Shirley me enamore de ti, no sé cómo pasó ni en qué momento ocurrió pero mis sentimientos hacia ti cambiaron.
+ Me empezó a gustar tu manera de ser, tu sonrisa, tu forma de conversar,tu compañía, tu amistad, verte en tus días malos y buenos, la manera de como te ganaste a mi familia, de la buena mujer que eres y conocer a alguien así no ocurre muy seguido, encontrarte fue como encontrar oro, porque eso vales para mí. Tuve la suerte de conocerte, de poder saber que te mereces toda la felicidad del mundo y cada pequeño detalle que hice por ti no fue para que recibiera algo a cambio, sino que fue mi manera de decir "TE QUIERO" y que me recuerdes siempre.
+Cada detalle que hice fue mi manera de decir "TE QUIERO".
+ Sería muy egoísta decirte que quiero estar contigo sabiendo que quieres a otra persona, y que yo jamás podría estar contigo me duele decirte todo esto, porque sé que te vas alejar de mí, pero estoy siendo sincero y que no quiero mentirte más. Siempre tendrás un pedacito de mi corazón porque dejaste la valla muy alta shirley ❤️ espero que si algún día dios quiera me puedas dar una oportunidad, pero mientras vive tu felicidad que te lo mereces 🥹
+espero que si algún día dios quiera me puedas dar una oportunidad, mientras se feliz vive tu felicidad que te lo mereces 💞`;
+
+function abrirDetalle(){
+    document.getElementById("inicio").style.display="none";
+    document.getElementById("galeria").style.display="block";
+    document.getElementById("musica").play();
+    mostrarSecuencia();
+}
+
+function mostrarSecuencia(){
+    let img = document.getElementById("foto");
+    let frase = document.getElementById("frase");
+
+    function siguiente(){
+
+        if(indice < fotos.length){
+
+            img.src = fotos[indice];
+            img.style.opacity = 1;
+            img.style.transform = "scale(1.05)";
+
+            frase.innerHTML = frases[indice][0];
+            frase.style.opacity = 1;
+
+            setTimeout(()=>{
+                frase.style.opacity = 0;
+
+                setTimeout(()=>{
+                    frase.innerHTML = frases[indice][1];
+                    frase.style.opacity = 1;
+                },1000);
+
+            },4000);
+
+            setTimeout(()=>{
+                img.style.opacity = 0;
+                img.style.transform = "scale(0.9)";
+                frase.style.opacity = 0;
+
+                indice++;
+                setTimeout(siguiente,1500);
+
+            },9000);
+
+        }else{
+            document.getElementById("galeria").style.display="none";
+            mostrarCarta();
+        }
+    }
+
+    siguiente();
+}
+
+function mostrarCarta(){
+    document.getElementById("carta").style.display="block";
+    escribirCarta();
+}
+
+function escribirCarta(){
+    let i = 0;
+    let velocidad = 25;
+    let texto = document.getElementById("textoCarta");
+
+    function escribir(){
+        if(i < mensajeFinal.length){
+            texto.innerHTML += mensajeFinal.charAt(i);
+            i++;
+            setTimeout(escribir, velocidad);
+        }
+    }
+
+    escribir();
+}
+</script>
+
+</body>
+</html>
